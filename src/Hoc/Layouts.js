@@ -1,10 +1,11 @@
 import React,{ Component} from 'react';
-import Header from '../Components/Header_footer/Header'
+import Header from '../Components/Header_footer/Header';
+import Footer from '../Components/Header_footer/Footer';
 const layout=( props )=>{
     return <div>
        <Header/>
        {props.children}
-       END This is Footer
+       <Footer/>
     </div>
 }
 export default layout
