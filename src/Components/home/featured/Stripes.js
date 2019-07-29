@@ -4,10 +4,69 @@ import Animate from 'react-move/Animate';
 import { renderComponent } from 'recompose';
 
 class Stripes extends Component{
+    state ={
+        stripes:[
+            {
+                background:'#98c5e9',
+                left: '120',
+                rotate: '25',
+                top:'-260',
+                delay:'0'
+            },
+            {
+                background:'#ffffff',
+                left: '360',
+                rotate: '25',
+                top:'-397',
+                delay:'200'
+            },
+            {
+                background:'#98c5e9',
+                left: '600',
+                rotate: '25',
+                top:'-498',
+                delay:'400'
+            }
+        ]
+    }
     showStripes=( )=>(
-        <div>
-            Stripes
-        </div>
+        this.state.stripes.map((stripe,i)=>(
+            <Animate
+                key ={i}
+                show={true}
+                start={{
+                    background:'#ffffff',
+                    opacity:'0',
+                    left:'0',
+                    rotate:'0',
+                    top:'0'
+                }}
+                enter={{
+                    background:[stripe.background],
+                    timing:{delay:stripe.delay,duration:200, ease:easePolyOut},
+                    opacity:[1],
+                    rotate: [stripe.rotate],
+                    top:[stripe.top],
+                    left:[stripe.left]
+                }}
+            >
+               {({rotate,opacity,left,top,background})=>{
+                   return(
+                    <div className="stripe"
+                    style={{
+                        background,
+                        opacity,
+                        transform: `rotate(${rotate}deg) translate(${left}px,${top}px)`,
+                        rotate,
+                        top
+                    }}
+                >
+
+                </div>
+                   );
+               }}
+            </Animate>
+        ))
     );
     render( ){
         return (
